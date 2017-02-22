@@ -1,0 +1,18 @@
+---
+cog_bundle_version: 4
+name: grafana
+description: Grafana Graphs in Chat
+version: 0.1.0
+docker:
+  image: cogcmd/grafana
+  tag: 0.1.0
+config:
+  env:
+  - var: GRAFANA_API_KEY
+    description: "API key for your Grafana instnace"
+commands:
+  graph:
+    executable: "/home/bundle/cog-command"
+    description: View a graph
+    rules:
+    - allow
