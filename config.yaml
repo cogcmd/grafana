@@ -8,11 +8,39 @@ docker:
   tag: 0.1.0
 config:
   env:
+  - var: GRAFANA_URL
+    description: "URL to your Grafana instance"
   - var: GRAFANA_API_KEY
     description: "API key for your Grafana instnace"
 commands:
+  dashboards:
+    executable: "/home/bundle/cog-command"
+    description: List dashboards
+    rules:
+    - allow
+  panels:
+    executable: "/home/bundle/cog-command"
+    description: List panels in a dashboard
+    rules:
+    - allow
   graph:
     executable: "/home/bundle/cog-command"
     description: View a graph
     rules:
     - allow
+templates:
+  dashboards:
+    body: |
+      ~each var=$results as=dashboard~
+      ~$dashboard.slug~
+      ~end~
+  panels:
+    body: |
+      ~each var=$results as=panel~
+      ~$panel.slug~
+      ~end~
+  graph:
+    body: |
+      ~each var=$results as=graph~
+      ~$graph.url~
+      ~end~
