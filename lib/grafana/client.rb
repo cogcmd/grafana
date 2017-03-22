@@ -28,7 +28,7 @@ class Grafana::Client
   end
 
   def graph(dashboard_slug, panel_id)
-    query = {from: 1.hour.ago.to_i
+    query = {from: 1.hour.ago.to_i,
              to: Time.now.to_i,
              panelId: panel_id,
              width: 800,

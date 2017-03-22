@@ -1,11 +1,11 @@
 ---
-cog_bundle_version: 4
+cog_bundle_version: 5
 name: grafana
 description: Grafana Graphs in Chat
-version: 0.1.0
+version: 0.1.1
 docker:
   image: cogcmd/grafana
-  tag: 0.1.0
+  tag: 0.1.1
 config:
   env:
   - var: GRAFANA_URL
