@@ -10,7 +10,6 @@ module CogCmd::Grafana
 
       graph = client.graph(dashboard_slug, panel["id"])
 
-      response.template = 'graph'
       response.content = graph
     end
 

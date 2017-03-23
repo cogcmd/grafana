@@ -14,7 +14,7 @@ class Grafana::Command < Cog::Command
 
   def require_api_key!
     unless api_key
-      raise(Cog::Abort, "`GRAFANA_API_KEY` not set.")
+      raise(Cog::Error, "`GRAFANA_API_KEY` not set.")
     end
   end
 end
