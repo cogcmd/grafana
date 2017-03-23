@@ -5,12 +5,19 @@ require 'active_support/all'
 module CogCmd::Grafana
   class Panels < Grafana::Command
     def run_command
-      panels = client.panels(dashboard_slug)
-                     .map { |p| p["slug"] = p["title"].parameterize; p }
-                     .sort_by { |p| p["slug"] }
+      response.content = formatted_panels
+    end
 
-      response.template = 'panels'
-      response.content = panels
+    def panels
+     client.panels(dashboard_slug)
+       .map { |p| p["slug"] = p["title"].parameterize; p }
+       .sort_by { |p| p["slug"] }
+    end
+
+    def formatted_panels
+      slugs = Array.new
+      panels.each{|p| slugs.push(p["slug"])}
+      return slugs.to_json
     end
 
     def dashboard_slug

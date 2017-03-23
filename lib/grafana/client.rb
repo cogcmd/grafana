@@ -8,7 +8,7 @@ class Grafana::Client
 
   attr_reader :api_key
 
-  base_uri ENV["GRAFANA_URL"]
+  base_uri ENV['GRAFANA_URL']
 
   def initialize(api_key)
     @api_key = api_key
@@ -50,8 +50,8 @@ class Grafana::Client
   end
 
   def write_to_s3(image_data)
-    bucket = "operable-grafana-dev"
-    key = "#{SecureRandom.uuid}.png"
+    bucket = ENV["GRAFANA_S3_BUCKET"]
+    key = "#{ENV["GRAFANA_S3_PATH"]}/#{SecureRandom.uuid}.png"
 
     @s3_client.put_object({acl: "public-read",
                            body: image_data,
